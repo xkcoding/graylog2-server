@@ -16,6 +16,7 @@
  */
 package org.graylog2.plugin.journal;
 
+import com.fasterxml.uuid.Generators;
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.Lists;
 import com.google.protobuf.ByteString;
@@ -74,11 +75,11 @@ public class RawMessage implements Serializable {
     }
 
     public RawMessage(@Nonnull byte[] payload, @Nullable InetSocketAddress remoteAddress) {
-        this(Long.MIN_VALUE, UUID.randomUUID(), Tools.nowUTC(), ResolvableInetSocketAddress.wrap(remoteAddress), payload);
+        this(Long.MIN_VALUE, Generators.timeBasedGenerator().generate(), Tools.nowUTC(), ResolvableInetSocketAddress.wrap(remoteAddress), payload);
     }
 
     public RawMessage(@Nonnull byte[] payload, @Nullable ResolvableInetSocketAddress remoteAddress) {
-        this(Long.MIN_VALUE, UUID.randomUUID(), Tools.nowUTC(), remoteAddress, payload);
+        this(Long.MIN_VALUE, Generators.timeBasedGenerator().generate(), Tools.nowUTC(), remoteAddress, payload);
     }
 
     public RawMessage(long journalOffset,
