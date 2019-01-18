@@ -17,7 +17,6 @@
 package org.graylog2.plugin;
 
 import com.codahale.metrics.Meter;
-import com.eaio.uuid.UUID;
 import com.google.common.base.Function;
 import com.google.common.base.Joiner;
 import com.google.common.base.Preconditions;
@@ -55,6 +54,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
@@ -183,7 +183,7 @@ public class Message implements Messages {
     }
 
     public Message(final String message, final String source, final DateTime timestamp) {
-        fields.put(FIELD_ID, new UUID().toString());
+        fields.put(FIELD_ID, UUID.randomUUID().toString());
         addRequiredField(FIELD_MESSAGE, message);
         addRequiredField(FIELD_SOURCE, source);
         addRequiredField(FIELD_TIMESTAMP, timestamp);

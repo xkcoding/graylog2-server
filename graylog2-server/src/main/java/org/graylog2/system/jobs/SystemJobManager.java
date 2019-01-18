@@ -18,7 +18,6 @@ package org.graylog2.system.jobs;
 
 import com.codahale.metrics.InstrumentedScheduledExecutorService;
 import com.codahale.metrics.MetricRegistry;
-import com.eaio.uuid.UUID;
 import com.google.common.base.Stopwatch;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.graylog2.shared.system.activities.Activity;
@@ -28,6 +27,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -72,7 +72,7 @@ public class SystemJobManager {
 
         final String jobClass = job.getClass().getCanonicalName();
 
-        job.setId(new UUID().toString());
+        job.setId(UUID.randomUUID().toString());
         jobs.put(job.getId(), job);
 
         executor.schedule(new Runnable() {

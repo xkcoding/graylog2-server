@@ -336,12 +336,6 @@
             </dependency>
 
             <dependency>
-                <groupId>com.eaio.uuid</groupId>
-                <artifactId>uuid</artifactId>
-                <version>${uuid.version}</version>
-            </dependency>
-
-            <dependency>
                 <groupId>org.apache.shiro</groupId>
                 <artifactId>shiro-core</artifactId>
                 <version>${shiro.version}</version>

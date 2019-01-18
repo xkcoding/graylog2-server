@@ -16,7 +16,6 @@
  */
 package org.graylog2.inputs.codecs;
 
-import com.eaio.uuid.UUID;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -47,6 +46,7 @@ import javax.annotation.Nullable;
 import javax.inject.Inject;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.UUID;
 
 @Codec(name = "gelf", displayName = "GELF")
 public class GelfCodec extends AbstractCodec {

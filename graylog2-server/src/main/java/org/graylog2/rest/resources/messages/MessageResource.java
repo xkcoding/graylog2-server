@@ -17,7 +17,6 @@
 package org.graylog2.rest.resources.messages;
 
 import com.codahale.metrics.annotation.Timed;
-import com.eaio.uuid.UUID;
 import com.google.common.net.InetAddresses;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -62,6 +61,7 @@ import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
+import java.util.UUID;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
 import static java.util.Objects.requireNonNull;
@@ -149,7 +149,7 @@ public class MessageResource extends RestResource {
 
         final ResolvableInetSocketAddress remoteAddress = ResolvableInetSocketAddress.wrap(new InetSocketAddress(request.remoteAddress(), 1234));
 
-        final RawMessage rawMessage = new RawMessage(0, new UUID(), Tools.nowUTC(), remoteAddress, request.message().getBytes(StandardCharsets.UTF_8));
+        final RawMessage rawMessage = new RawMessage(0, UUID.randomUUID(), Tools.nowUTC(), remoteAddress, request.message().getBytes(StandardCharsets.UTF_8));
         final Message message = decodeMessage(codec, remoteAddress, rawMessage);
 
         return ResultMessage.createFromMessage(message);

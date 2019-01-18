@@ -71,6 +71,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.UUID;
 
 @RequiresAuthentication
 @Api(value = "Extractors", description = "Extractors of an input")
@@ -120,7 +121,7 @@ public class ExtractorsResource extends RestResource {
         checkPermission(RestPermissions.INPUTS_EDIT, inputId);
 
         final Input mongoInput = inputService.find(inputId);
-        final String id = new com.eaio.uuid.UUID().toString();
+        final String id = UUID.randomUUID().toString();
         final Extractor extractor = buildExtractorFromRequest(cer, id);
 
         try {

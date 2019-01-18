@@ -18,7 +18,6 @@ package org.graylog2.plugin;
 
 import com.codahale.metrics.Meter;
 import com.codahale.metrics.MetricRegistry;
-import com.eaio.uuid.UUID;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -49,6 +48,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 import java.util.regex.Pattern;
 
 import static com.google.common.collect.Sets.symmetricDifference;
@@ -124,7 +124,7 @@ public class MessageTest {
     @Test
     public void testConstructorsTrimValues() throws Exception {
         final Map<String, Object> messageFields = ImmutableMap.of(
-                Message.FIELD_ID, new UUID().toString(),
+                Message.FIELD_ID, UUID.randomUUID().toString(),
                 Message.FIELD_MESSAGE, " foo ",
                 Message.FIELD_SOURCE, " bar ",
                 "something", " awesome ",

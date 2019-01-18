@@ -16,13 +16,13 @@
  */
 package org.graylog2.shared.buffers;
 
-import com.eaio.uuid.UUID;
 import com.google.common.base.MoreObjects;
 import com.lmax.disruptor.EventFactory;
 import com.lmax.disruptor.EventTranslatorOneArg;
 import org.graylog2.plugin.journal.RawMessage;
 
 import java.nio.ByteBuffer;
+import java.util.UUID;
 
 public class RawMessageEvent {
 

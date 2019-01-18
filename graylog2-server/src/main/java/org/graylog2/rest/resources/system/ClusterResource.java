@@ -17,7 +17,6 @@
 package org.graylog2.rest.resources.system;
 
 import com.codahale.metrics.annotation.Timed;
-import com.eaio.uuid.UUID;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -46,6 +45,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.UUID;
 
 @Api(value = "System/Cluster", description = "Node discovery")
 @RequiresAuthentication
@@ -62,7 +62,7 @@ public class ClusterResource extends RestResource {
                            NodeId nodeId) {
         this.nodeService = nodeService;
         this.nodeId = nodeId;
-        this.clusterId = clusterConfigService.getOrDefault(ClusterId.class, ClusterId.create(UUID.nilUUID().toString()));
+        this.clusterId = clusterConfigService.getOrDefault(ClusterId.class, ClusterId.create(UUID.fromString("00000000-0000-0000-0000-000000000000").toString()));
     }
 
     @GET

@@ -16,7 +16,6 @@
  */
 package org.graylog2.plugin.journal;
 
-import com.eaio.uuid.UUID;
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.Lists;
 import com.google.protobuf.ByteString;
@@ -40,6 +39,7 @@ import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -74,11 +74,11 @@ public class RawMessage implements Serializable {
     }
 
     public RawMessage(@Nonnull byte[] payload, @Nullable InetSocketAddress remoteAddress) {
-        this(Long.MIN_VALUE, new UUID(), Tools.nowUTC(), ResolvableInetSocketAddress.wrap(remoteAddress), payload);
+        this(Long.MIN_VALUE, UUID.randomUUID(), Tools.nowUTC(), ResolvableInetSocketAddress.wrap(remoteAddress), payload);
     }
 
     public RawMessage(@Nonnull byte[] payload, @Nullable ResolvableInetSocketAddress remoteAddress) {
-        this(Long.MIN_VALUE, new UUID(), Tools.nowUTC(), remoteAddress, payload);
+        this(Long.MIN_VALUE, UUID.randomUUID(), Tools.nowUTC(), remoteAddress, payload);
     }
 
     public RawMessage(long journalOffset,
@@ -101,8 +101,8 @@ public class RawMessage implements Serializable {
         msgBuilder.setVersion(CURRENT_VERSION);
 
         this.id = id;
-        msgBuilder.setUuidTime(id.time);
-        msgBuilder.setUuidClockseq(id.clockSeqAndNode);
+        msgBuilder.setUuidTime(id.timestamp());
+        msgBuilder.setUuidClockseq(id.clockSequence());
 
         msgBuilder.setTimestamp(timestamp.getMillis());
         if (null != remoteAddress) {
@@ -179,8 +179,8 @@ public class RawMessage implements Serializable {
     }
 
     public byte[] getIdBytes() {
-        final long time = id.getTime();
-        final long clockSeqAndNode = id.getClockSeqAndNode();
+        final long time = id.timestamp();
+        final long clockSeqAndNode = id.clockSequence();
 
         return ByteBuffer.allocate(16)
                 .putLong(time)

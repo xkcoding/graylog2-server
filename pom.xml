@@ -103,7 +103,7 @@
         <grok.version>0.1.9</grok.version>
         <guava-retrying.version>2.0.0</guava-retrying.version>
         <guava.version>25.1-jre</guava.version>
-        <guice.version>4.2.0</guice.version>
+        <guice.version>4.2.2</guice.version>
         <HdrHistogram.version>2.1.10</HdrHistogram.version>
         <hibernate-validator.version>6.0.13.Final</hibernate-validator.version>
         <hk2.version>2.5.0-b32</hk2.version> <!-- The HK2 version should match the version being used by Jersey -->
@@ -144,7 +144,6 @@
         <slf4j.version>1.7.25</slf4j.version>
         <swagger.version>1.5.13</swagger.version>
         <syslog4j.version>0.9.60</syslog4j.version>
-        <uuid.version>3.2</uuid.version>
         <validation-api.version>2.0.1.Final</validation-api.version>
         <zkclient.version>0.7</zkclient.version>
         <zookeeper.version>3.4.9</zookeeper.version>

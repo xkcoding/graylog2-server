@@ -18,7 +18,6 @@ package org.graylog.plugins.map.geoip;
 
 import com.codahale.metrics.MetricFilter;
 import com.codahale.metrics.MetricRegistry;
-import com.eaio.uuid.UUID;
 import com.google.common.collect.Maps;
 import com.google.common.net.InetAddresses;
 import org.graylog.plugins.map.ConditionalRunner;
@@ -32,6 +31,7 @@ import org.junit.runner.RunWith;
 
 import java.net.URISyntaxException;
 import java.util.Map;
+import java.util.UUID;
 
 import static com.codahale.metrics.MetricRegistry.name;
 import static org.junit.Assert.assertEquals;
@@ -97,7 +97,7 @@ public class GeoIpResolverEngineTest {
         final GeoIpResolverEngine resolver = new GeoIpResolverEngine(config.toBuilder().enabled(false).build(), metricRegistry);
 
         final Map<String, Object> messageFields = Maps.newHashMap();
-        messageFields.put("_id", (new UUID()).toString());
+        messageFields.put("_id", (UUID.randomUUID()).toString());
         messageFields.put("source", "192.168.0.1");
         messageFields.put("message", "Hello from 1.2.3.4");
         messageFields.put("extracted_ip", "1.2.3.4");
@@ -128,7 +128,7 @@ public class GeoIpResolverEngineTest {
         final GeoIpResolverEngine resolver = new GeoIpResolverEngine(config, metricRegistry);
 
         final Map<String, Object> messageFields = Maps.newHashMap();
-        messageFields.put("_id", (new UUID()).toString());
+        messageFields.put("_id", (UUID.randomUUID()).toString());
         messageFields.put("source", "192.168.0.1");
         messageFields.put("message", "Hello from 1.2.3.4");
         messageFields.put("extracted_ip", "1.2.3.4");

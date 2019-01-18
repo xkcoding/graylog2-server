@@ -18,7 +18,6 @@ package org.graylog2.shared.rest.resources.system;
 
 import com.codahale.metrics.annotation.Timed;
 import com.codahale.metrics.jvm.ThreadDump;
-import com.eaio.uuid.UUID;
 import com.github.joschi.jadconfig.util.Size;
 import com.google.common.collect.ImmutableMap;
 import io.swagger.annotations.Api;
@@ -47,6 +46,7 @@ import java.lang.management.ManagementFactory;
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 import java.util.Map;
+import java.util.UUID;
 
 @RequiresAuthentication
 @Api(value = "System", description = "System information of this node.")
@@ -59,7 +59,7 @@ public class SystemResource extends RestResource {
     @Inject
     public SystemResource(ServerStatus serverStatus, ClusterConfigService clusterConfigService) {
         this.serverStatus = serverStatus;
-        this.clusterId = clusterConfigService.getOrDefault(ClusterId.class, ClusterId.create(UUID.nilUUID().toString()));
+        this.clusterId = clusterConfigService.getOrDefault(ClusterId.class, ClusterId.create(UUID.fromString("00000000-0000-0000-0000-000000000000").toString()));
     }
 
     @GET
