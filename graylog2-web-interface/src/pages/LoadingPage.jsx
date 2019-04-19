@@ -13,7 +13,7 @@ class LoadingPage extends React.Component {
   };
 
   static defaultProps = {
-    text: 'Loading, please wait...',
+    text: '正在加载，请稍后...',
   };
 
   componentDidMount() {
@@ -32,7 +32,7 @@ class LoadingPage extends React.Component {
         <div className="container" id="login-box">
           <Row>
             <Col md={4} mdOffset={4} className="well" id="login-box-content">
-              <legend><i className="fa fa-group" /> Welcome to Graylog</legend>
+              <legend><i className="fa fa-group" /> 欢迎使用 Graylog !</legend>
               <p className="loading-text">
                 <Spinner text={this.props.text} />
               </p>

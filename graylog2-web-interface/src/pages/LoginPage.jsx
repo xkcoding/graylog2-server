@@ -50,9 +50,9 @@ const LoginPage = createReactClass({
     this.promise = SessionActions.login.triggerPromise(username, password, location);
     this.promise.catch((error) => {
       if (error.additional.status === 401) {
-        this.setState({ lastError: 'Invalid credentials, please verify them and retry.' });
+        this.setState({ lastError: '用户名或密码错误，请重新尝试登陆！' });
       } else {
-        this.setState({ lastError: `Error - the server returned: ${error.additional.status} - ${error.message}` });
+        this.setState({ lastError: `服务器内部错误 - 服务器返回状态: ${error.additional.status} - ${error.message}` });
       }
     });
     this.promise.finally(() => {
@@ -93,17 +93,17 @@ const LoginPage = createReactClass({
           <div className="container" id="login-box">
             <Row>
               <form className="col-md-4 col-md-offset-4 well" id="login-box-content" onSubmit={this.onSignInClicked}>
-                <legend><i className="fa fa-group" /> Welcome to Graylog</legend>
+                <legend><i className="fa fa-group" /> 欢迎使用 Graylog !</legend>
 
                 {alert}
 
-                <Input ref={(username) => { this.username = username; }} id="username" type="text" placeholder="Username" autoFocus />
+                <Input ref={(username) => { this.username = username; }} id="username" type="text" placeholder="请输入用户名" autoFocus />
 
-                <Input ref={(password) => { this.password = password; }} id="password" type="password" placeholder="Password" />
+                <Input ref={(password) => { this.password = password; }} id="password" type="password" placeholder="请输入密码" />
 
                 <FormGroup>
                   <Button type="submit" bsStyle="info" disabled={this.state.loading}>
-                    {this.state.loading ? 'Signing in...' : 'Sign in'}
+                    {this.state.loading ? '正在登陆...' : '登 陆'}
                   </Button>
                 </FormGroup>
 

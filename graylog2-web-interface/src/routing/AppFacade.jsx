@@ -45,7 +45,7 @@ const AppFacade = createReactClass({
       return <LoginPage />;
     }
     if (!this.state.currentUser) {
-      return <LoadingPage text="We are preparing Graylog for you..." />;
+      return <LoadingPage text="Graylog 正在加载，请稍后..." />;
     }
     return <LoggedInPage />;
   },
